@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+
+<p> <h3>Users in <%= @leaderboard.rankDivision %> Division </h3>
+<%@leaderboard.user.each do |user|%>
+	<br>
+	
+	<h4>Username: <%=user.username%></h4>
+	
+	<br>
+<%end%>
+</p>
+
+<%= link_to 'Back', leaderboards_path %>

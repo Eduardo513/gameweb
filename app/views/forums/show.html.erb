@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h2><%= @forum.characterName %></h2>
+</p>
+
+<p>
+	
+  <%= image_tag(@forum.characterPicture, :alt => "Could not find image", :size=>"200x100") %>
+  </br>
+ </p>
+ 
+	<%= form_for([@forum, Comment.new]) do|f| %>
+	<%=f.text_area :content, :rows=>4, :cols=>40%>
+		<div class = "actions">
+			<%=f.submit "Post a Comment"%>
+		</div>
+	 <%end%>
+
+	<%if@forum.comment.empty?%>
+		<h3> You are the first to comment</h3>
+	<%else%>
+		<h2>All Comments</h2>
+		<%@forum.comment.reverse.each do |comment| %>
+			<p><%=comment.content%>
+			Posted: <%=time_ago_in_words(comment.created_at)%> - Up Votes: <%=comment.upVote%>
+			<%=button_to'Up Vote', up_voteM(comment), method: :get %></p>
+			
+		<%end%>
+		
+	<%end%>
+
+
+<%= link_to 'Back', forums_path %>

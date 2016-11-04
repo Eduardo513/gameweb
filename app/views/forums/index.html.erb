@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Forums</h1>
+
+<table>
+
+  <tbody>
+    <% @forums.each do |forum| %>
+      
+        <td><h3><%= forum.characterName %></h3></td>
+        <td><%= image_tag(forum.characterPicture, :alt => "Could not find image", :size=>"200x100") %></td>
+        <td><%= link_to 'Enter Forum', forum %></td>
+		
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+ <%= link_to 'New Forum', new_forum_path %>
