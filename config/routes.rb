@@ -10,12 +10,20 @@ end
 		get 'logout'=> :destroy
 		delete 'logout'=> :destroy
 	end
+	
+	resources :comments do
+	put :upvote
+	end
+	
+	
 
   get 'pages/home'
 
   get 'pages/about'
+  
+  get 'search', :to=> 'users#search'
 
-  get 'up_vote', :to=>'comments#up_vote'
+  get 'upvote', :to=>'comments#upvote'
   
   resources :leaderboards
   resources :users

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101145435) do
+ActiveRecord::Schema.define(version: 20161213185202) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "content"
@@ -42,6 +42,10 @@ ActiveRecord::Schema.define(version: 20161101145435) do
     t.integer  "leaderboard_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "email"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
 end

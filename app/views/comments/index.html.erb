@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+	  <th>Comment id</th>
       <th>Content</th>
       <th>Upvote</th>
       <th>Forum</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
+		<td><%= comment.id%></td>
         <td><%= comment.content %></td>
 	    <td><%= comment.upVote %></td>
         <td><%= comment.forum_id %></td>

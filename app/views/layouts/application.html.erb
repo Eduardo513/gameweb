@@ -7,10 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<style>
+body{
+background-color:#C0C0C0	
+}
+h5
+	{
+	color:  #c0c0c0
+	}
+</style>
+
 
 <div id = "banner">
-	<%= image_tag("leaguebanner.jpg", :size => '175x50') %>
-	<%= "Eddy's Game Forum" %>
+	
+	<%= "Level Up Forums" %>
 </div>
 
 
@@ -20,8 +30,12 @@
         <li><%=link_to "Home", root_path%></li>
 		<li><%=link_to "Forums", forums_path%></li>
 		<li><%=link_to "Leaderboards", leaderboards_path%></li>
+		
+		<li><h5>Search for a Friend! Enter their username: </h5><%= render 'users/search' %>  </li>
+		
+		</ul>
         
-      </ul>
+     
       
       <ul class="nav navbar-nav navbar-right">
 		<%if signed_in? %>

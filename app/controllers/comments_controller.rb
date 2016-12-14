@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :put]
   before_action :authorise
+ 
   # GET /comments
   # GET /comments.json
   def index
@@ -21,14 +22,13 @@ class CommentsController < ApplicationController
   def edit
   end
   
-  def up_vote
-	@comment = Comment.all
-		@comment.each do |c|
-			c.up_vote(c)
-			c.save
-		end
+  def upvote
+		@comment = Comment.find(params[:comment_id])
+		Comment.increment_counter(:upVote, @comment.id)
 		
-	end
+		redirect_to :back
+  end
+
 
   # POST /comments
   # POST /comments.json

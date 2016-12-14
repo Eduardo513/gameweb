@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorise_admin, only: :index
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -21,6 +21,16 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
+  
+  def search
+	@users = User.search params[:query]
+	unless @users.empty?
+		render'index'
+	else
+		flash[:notice] = 'No record matches that search'
+		render 'index'
+	end
+  end
 
   # POST /users
   # POST /users.json
@@ -29,6 +39,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+		Usermailer.welcome(@user).deliver
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -70,6 +81,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :password, :password_confirmation, :favouriteCharacter, :leaderboard_id)
+      params.require(:user).permit(:username, :password, :password_confirmation, :favouriteCharacter, :leaderboard_id, :email, :address, :latitude, :longitude)
     end
 end

@@ -21,11 +21,19 @@
 		<h3> You are the first to comment</h3>
 	<%else%>
 		<h2>All Comments</h2>
+		<br>
 		<%@forum.comment.reverse.each do |comment| %>
-			<p><%=comment.content%>
+			<p>Posted by: <%= comment.user.username %>
+			<br>
+			--------------------------------
+			<br>
+			<strong>		<%=comment.content%> </strong>
+			<br>
+			--------------------------------
+			<br>
 			Posted: <%=time_ago_in_words(comment.created_at)%> - Up Votes: <%=comment.upVote%>
-			<%=button_to'Up Vote', up_voteM(comment), method: :get %></p>
-			
+			<%= button_to 'Up Vote', comment_upvote_path(comment.id), method: :put %>
+			</p>
 		<%end%>
 		
 	<%end%>
