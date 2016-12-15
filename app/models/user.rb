@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
 	has_secure_password
-	has_one:leaderboard
-	has_many:comment,  dependent: :destroy
+	belongs_to:leaderboard
+	has_many:comments,  dependent: :destroy
 	
+	validates :email, uniqueness: true
+	validates :email, presence: true
 	validates :username, uniqueness: true
 	validates :username, presence: true
 	

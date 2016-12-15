@@ -23,6 +23,7 @@ class CommentsController < ApplicationController
   end
   
   def upvote
+	
 		@comment = Comment.find(params[:comment_id])
 		Comment.increment_counter(:upVote, @comment.id)
 		
@@ -34,7 +35,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
 		@forum = Forum.find params[:forum_id]
-		@comment = @forum.comment.new(comment_params)
+		@comment = @forum.comments.new(comment_params)
 		@comment.user_id = @current_user.id
 		@comment.save
 	

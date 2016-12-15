@@ -1,3 +1,5 @@
+<%if admin?%>
+
 <%= form_for(@leaderboard) do |f| %>
   <% if @leaderboard.errors.any? %>
     <div id="error_explanation">
@@ -18,4 +20,8 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
+
+<% else%>
+<h1>You do not have access to this page</h1> 
 <% end %>

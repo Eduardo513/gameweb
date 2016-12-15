@@ -10,10 +10,6 @@
   <%= @user.email %>
 </p>
 
-<div id="search">
-	<%= render 'search' %>
-</div>
-
 <p>
   <strong>Address:</strong>
   <%= @user.address %>
@@ -26,7 +22,7 @@
 
 <p>
   <strong>Rank:</strong>
-  <%= @user.leaderboard_id%> #putting user.leaderboard.rankDivision does not work here for some reason. It should show rankDivision
+   <%= @user.leaderboard.rankDivision%>
 </p>
 
 <p>
@@ -38,4 +34,7 @@
 <%= image_tag"http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@user.latitude}%2C#{@user.longitude}" %>
 </p>
 <%= link_to 'Edit Account', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+<%if admin?%>
+<%= link_to 'See all users', users_path %>
+<%end%>

@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
-
+	<center>
 <p>
   <h2><%= @forum.characterName %></h2>
 </p>
 
 <p>
 	
-  <%= image_tag(@forum.characterPicture, :alt => "Could not find image", :size=>"200x100") %>
+  <%= image_tag(@forum.characterPicture, :alt => "Could not find image", :size=>"300x150") %>
   </br>
  </p>
  
@@ -17,12 +17,13 @@
 		</div>
 	 <%end%>
 
-	<%if@forum.comment.empty?%>
+	<%if@forum.comments.empty?%>
 		<h3> You are the first to comment</h3>
 	<%else%>
+	
 		<h2>All Comments</h2>
 		<br>
-		<%@forum.comment.reverse.each do |comment| %>
+		<%@forum.comments.reverse.each do |comment| %>
 			<p>Posted by: <%= comment.user.username %>
 			<br>
 			--------------------------------
@@ -32,11 +33,15 @@
 			--------------------------------
 			<br>
 			Posted: <%=time_ago_in_words(comment.created_at)%> - Up Votes: <%=comment.upVote%>
+			<%if signed_in?%>
 			<%= button_to 'Up Vote', comment_upvote_path(comment.id), method: :put %>
+			<%end%>
 			</p>
+			<br>
 		<%end%>
 		
 	<%end%>
 
 
-<%= link_to 'Back', forums_path %>
+<h4><%= link_to 'Back', forums_path %></h4>
+	</center>

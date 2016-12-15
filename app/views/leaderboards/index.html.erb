@@ -2,8 +2,8 @@
 
 <h1>Leaderboards</h1>
 
-<table>
-  <thead>
+<table class ="table">
+  <thead class="thead-inverse">
     <tr>
       <th><h3>Rank Division</h3></th>
       <th colspan="3"></th>
@@ -14,7 +14,7 @@
     <% @leaderboards.each do |leaderboard| %>
       <tr>
         <td><h4><%= leaderboard.rankDivision %></h4></td>
-        <td><%= link_to 'View Standings', leaderboard %></td>
+        <td><h4><%= link_to 'View Standings', leaderboard %></h4></td>
      
       </tr>
     <% end %>
@@ -22,5 +22,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Leaderboard', new_leaderboard_path %>
+<%if admin?%>
+	<%= link_to 'New Leaderboard', new_leaderboard_path %>
+<% end%>

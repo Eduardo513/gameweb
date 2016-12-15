@@ -2,7 +2,7 @@
 
 <h1>Listing Users</h1>
 
-<table>
+<table class ="table">
   <thead>
     <tr>
       <th>Username</th>
@@ -21,10 +21,12 @@
 		<td><%= user.email %></td>
 		<td><%= user.address %></td>
         <td><%= user.favouriteCharacter %></td>
-        <td><%= user.leaderboard_id %></td>
+        <td><%= user.leaderboard.rankDivision %></td>
+		<%if admin?%>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +34,6 @@
 
 <br>
 
+<%if admin?%>
 <%= link_to 'New User', new_user_path %>
+<%end%>

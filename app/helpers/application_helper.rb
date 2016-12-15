@@ -11,14 +11,12 @@ module ApplicationHelper
 	def admin?
 		if session[:user_id].nil? 
 			return false
+		else	
+			signed_in? == true
+			@current_user.username == "admin"
 			
-		elsif @current_user.username != "admin"
-			return false
-			
-		else
-			return true
 		end
-	end
 	
+	end
 end
 
